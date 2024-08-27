@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vimendes <vimendes@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/27 16:21:46 by vimendes          #+#    #+#             */
+/*   Updated: 2024/08/27 21:40:11 by vimendes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 int	ft_atoi(const char *nptr)
@@ -66,4 +78,38 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putchar_fd(s[i], fd);
 		i++;
 	}
+}
+char	*ft_strjoin(char *s1, char c)
+{
+	int		size;
+	int		j;
+	char	*str;
+
+	if (s1)
+		size = ft_strlen(s1);
+	else
+		size = 0;
+	str = (char *)malloc(sizeof(char) * (size + 2));
+	if (str == NULL)
+		return (NULL);
+	j = 0;
+	while (s1 && s1[j])
+	{
+		str[j] = s1[j];
+		j++;
+	}
+	str[j++] = c;
+	str[j] = '\0';
+	if(s1)
+		free(s1);
+	return (str);
+}
+size_t	ft_strlen(const char *src)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }
