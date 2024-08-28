@@ -12,31 +12,6 @@
 
 #include "minitalk.h"
 
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	sinal;
-	int	result;
-
-	sinal = 1;
-	result = 0;
-	i = 0;
-	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '-')
-			sinal = -sinal;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - 48);
-		i++;
-	}
-	return (result * sinal);
-}
-
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
@@ -79,31 +54,7 @@ void	ft_putstr_fd(char *s, int fd)
 		i++;
 	}
 }
-char	*ft_strjoin(char *s1, char c)
-{
-	int		size;
-	int		j;
-	char	*str;
 
-	if (s1)
-		size = ft_strlen(s1);
-	else
-		size = 0;
-	str = (char *)malloc(sizeof(char) * (size + 2));
-	if (str == NULL)
-		return (NULL);
-	j = 0;
-	while (s1 && s1[j])
-	{
-		str[j] = s1[j];
-		j++;
-	}
-	str[j++] = c;
-	str[j] = '\0';
-	if(s1)
-		free(s1);
-	return (str);
-}
 size_t	ft_strlen(const char *src)
 {
 	size_t	i;
@@ -112,4 +63,10 @@ size_t	ft_strlen(const char *src)
 	while (src[i] != '\0')
 		i++;
 	return (i);
+}
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
